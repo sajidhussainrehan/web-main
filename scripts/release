@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+STAGE=${1:-dev}
+TIMESTAMP=$(date -u "+%Y%m%d%H%M")
+
+if [[ ! $STAGE =~ ^(prod)$ ]]; then
+  echo -e "Please provide a valid stage (stages: prod) to release it!"
+  exit 0
+fi
+
+VERSION="$STAGE-$TIMESTAMP"
+
+echo -e "Pushing tag: $VERSION"
+
+git tag -a "$VERSION" -m "$VERSION"
+git push origin $VERSION --no-verify
+

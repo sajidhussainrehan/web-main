@@ -1,0 +1,19 @@
+name: 'Dev Release'
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: write
+  packages: read
+
+jobs:
+  build:
+    uses: smartwhales/devops/.github/workflows/amplify-deploy-remote.yml@main
+    secrets: inherit
+    with:
+      app: web
+      stage: dev

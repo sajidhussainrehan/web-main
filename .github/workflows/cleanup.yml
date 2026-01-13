@@ -1,0 +1,14 @@
+name: 'Nightly Tags Cleanup'
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # once per month
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cleanup:
+    uses: smartwhales/devops/.github/workflows/cleanup.yml@main
+    secrets: inherit

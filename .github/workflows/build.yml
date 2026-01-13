@@ -1,0 +1,15 @@
+name: 'Build & Test'
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  id-token: write
+  contents: write
+  packages: read
+
+jobs:
+  build:
+    uses: smartwhales/devops/.github/workflows/amplify-build.yml@main
+    secrets: inherit

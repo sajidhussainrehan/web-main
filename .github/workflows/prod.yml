@@ -1,0 +1,19 @@
+name: 'Prod Release'
+
+on:
+  push:
+    tags:
+      - "prod-[0-9]+"
+
+permissions:
+  id-token: write
+  contents: write
+  packages: read
+
+jobs:
+  deploy:
+    uses: smartwhales/devops/.github/workflows/amplify-deploy-manual.yml@main
+    secrets: inherit
+    with:
+      app: web
+      stage: prod
